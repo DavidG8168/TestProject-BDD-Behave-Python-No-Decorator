@@ -3,10 +3,15 @@ BDD with TestProject and Behave in Python
 Prerequisites:
 
 1.	Install Behave:
+```
 pip install behave
+```
 
 2.	Install TestProject Python OpenSDK:
+```
 pip3 install testproject-python-sdk
+```
+
 3.	Create a ‘Features’ folder.
  
 4.	Inside the folder, create your ‘.feature’ files. For example:
