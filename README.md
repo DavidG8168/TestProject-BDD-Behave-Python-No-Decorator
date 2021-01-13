@@ -15,6 +15,14 @@ pip3 install testproject-python-sdk
 3.	Create a ‘Features’ folder.
  
 4.	Inside the folder, create your ‘.feature’ files. For example:
+```
+Feature: TestProject with Behave Framework
+
+  Scenario: Run a Simple BDD test with TestProject
+     Given I navigate to the TestProject example page
+     When I perform a login
+     Then I should see a logout button
+```
  
 5.	Then you’ll need to create your step definitions, create a folder called ‘steps’ inside your ‘features’ folder, and there create a class with your step definitions.
  
