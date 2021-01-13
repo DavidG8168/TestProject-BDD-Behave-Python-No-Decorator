@@ -26,7 +26,7 @@ Feature: TestProject with Behave Framework
  
 5.	Then you’ll need to create your step definitions, create a folder called ‘steps’ inside your ‘features’ folder, and there create a class with your step definitions.
  
-You can also hover over the steps in your feature file with no created definitions and select the option to automatically create one for you:
+You can also hover over the steps in your feature file with no created definitions and select the option to automatically create one for you.
  
 To view your reports on TestProject, you’ll need to setup the TestProject driver for your Selenium tests or use the TestProject Generic driver for non-UI tests.
 The driver will need pass into the context used by each step and scenario.
@@ -35,12 +35,15 @@ To do that we’ll start by creating a helper object to store the driver and han
 1.	In your ‘Features’  folder create another folder called ‘helpers’, and in there create a new ‘.py’ file to store where we will create a class to store the driver. Here we’ll call it ‘selenium_helper.py’
  
 The ‘HelperFunc’ class will store the driver and handle reporting.
+
 You can use the following code:
+
+```
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-```
+
 class HelperFunc(object):
     __TIMEOUT = 15
 
