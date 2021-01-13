@@ -27,7 +27,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
+```
 class HelperFunc(object):
     __TIMEOUT = 15
 
@@ -52,10 +52,12 @@ class HelperFunc(object):
 
     def report_test(self, test_name, test_status):
         self._driver.report().test(name=test_name, passed=test_status)
+ ```
 
 Next, we’ll setup a configuration file where you can decide with type of driver you’d like to use, specify your developer token, project name and job name for your TestProject report.
 Create a file called ‘setup.cfg’ at the root of your project and fill it with the following details:
  
+ ```
 [Browser]
 Browser = browser_type
 [Token]
@@ -64,10 +66,13 @@ Token = my_dev_token
 Project = my_project_name
 [Job]
 Job = my_job_name
+```
 
 Then we can create another helper that will create the class that creates your driver based on the information from the setup.cfg file, create another .py file in your ‘helpers’ folder, here we’ll call it ‘web_helper.py’.
  
 You can use the following code:
+
+```
 from src.testproject.sdk.drivers import webdriver
 from .selenium_helper import HelperFunc
 
@@ -85,10 +90,14 @@ def get_browser(browser, token, project, job):
         return HelperFunc(webdriver.Ie(token=token, projectname=project, jobname=job))
     if browser == "generic":
         return HelperFunc(webdriver.Generic(token=token, project_name=project, job_name=job))
+  ```
+  
 The final step would be to create our ‘environmet.py’ file where we define our execution hooks, in here in the before_all hook, we can create our driver and store it in the context to be passed to all our steps.
 Create ‘environment.py’ in your ‘features’ folder.
  
 You can use the following code:
+
+```
 from src.testproject.sdk.drivers import webdriver
 from behave.fixture import use_fixture_by_tag
 import os
@@ -148,9 +157,12 @@ def after_scenario(context, scenario):
 
 def after_all(context):
     context.helperfunc.get_driver().quit()
+```
 
 Now the TestProject driver will be stored in your context, and you can use it in all your step definitions to create your Selenium or non-UI based tests.
 For example, let’s edit our step definitions to perform a simple login and validation scenario:
+
+```
 from behave import *
 
 
@@ -170,6 +182,7 @@ def step_impl(context):
 def step_impl(context):
     passed = context.helperfunc.get_driver().find_element_by_css_selector("#logout").is_displayed()
     assert passed is True
+```
 
-By utilizing the TestProject driver in your tests, you’ll be able to view your test reports and statistics on the TestProject platform:
+By utilizing the TestProject driver in your tests, you’ll be able to view your test reports and statistics on the TestProject platform.
  
